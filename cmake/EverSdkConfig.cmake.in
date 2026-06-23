@@ -1,0 +1,14 @@
+@PACKAGE_INIT@
+
+find_package(clipper2         REQUIRED       )
+find_package(earcut_hpp       REQUIRED       )
+find_package(SDL3             REQUIRED CONFIG)
+find_package(SDL3_image       REQUIRED CONFIG)
+find_package(SDL3_ttf         REQUIRED CONFIG)
+find_package(SDL3_shadercross REQUIRED CONFIG)
+find_package(Tracy            REQUIRED CONFIG)
+find_package(yyjson           REQUIRED CONFIG)
+
+include("${CMAKE_CURRENT_LIST_DIR}/EverSdk.cmake")
+
+check_required_components(EverSdk)

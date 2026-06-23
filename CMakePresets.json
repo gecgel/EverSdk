@@ -1,0 +1,97 @@
+{
+  "$schema": "https://cmake.org/cmake/help/latest/_downloads/3e2d73bff478d88a7de0de736ba5e361/schema.json",
+  "version": 10,
+  "cmakeMinimumRequired": {
+    "major": 4,
+    "minor": 0
+  },
+  "configurePresets": [
+    {
+      "name": "release",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "installDir": "${sourceDir}/install/${presetName}",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++",
+        "EM_ENABLE_ASSERTING": false,
+        "EM_ENABLE_DEBUGGING": false,
+        "EM_ENABLE_OPTIMIZING": true,
+        "EM_ENABLE_PROFILING": false
+      }
+    },
+    {
+      "name": "instrumented",
+      "inherits": ["release"],
+      "cacheVariables": {
+        "EM_ENABLE_PROFILING": true
+      }
+    },
+    {
+      "name": "debug",
+      "inherits": ["release"],
+      "cacheVariables": {
+        "EM_ENABLE_DEBUGGING": true,
+        "EM_ENABLE_OPTIMIZING": false
+      }
+    },
+    {
+      "name": "checked",
+      "inherits": ["debug"],
+      "cacheVariables": {
+        "EM_ENABLE_ASSERTING": true
+      }
+    },
+    {
+      "name": "optimized",
+      "inherits": ["release"],
+      "cacheVariables": {
+        "EM_ENABLE_DEBUGGING": true
+      }
+    },
+    {
+      "name": "profile",
+      "inherits": ["optimized"],
+      "cacheVariables": {
+        "EM_ENABLE_PROFILING": true
+      }
+    },
+    {
+      "name": "analysis",
+      "inherits": ["profile"],
+      "cacheVariables": {
+        "EM_ENABLE_ASSERTING": true
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "release",
+      "configurePreset": "release"
+    },
+    {
+      "name": "instrumented",
+      "configurePreset": "instrumented"
+    },
+    {
+      "name": "debug",
+      "configurePreset": "debug"
+    },
+    {
+      "name": "checked",
+      "configurePreset": "checked"
+    },
+    {
+      "name": "optimized",
+      "configurePreset": "optimized"
+    },
+    {
+      "name": "profile",
+      "configurePreset": "profile"
+    },
+    {
+      "name": "analysis",
+      "configurePreset": "analysis"
+    }
+  ]
+}
