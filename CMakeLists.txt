@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 4.0)
 project(EverSdk)
 
+set(BUILD_SHARED_LIBS             OFF)
+set(BUILD_TESTING                 OFF)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON )
+
 include("${CMAKE_SOURCE_DIR}/cmake/ConfigurationSettings.cmake")
 
 include("${CMAKE_SOURCE_DIR}/cmake/external/Clipper2.cmake")
