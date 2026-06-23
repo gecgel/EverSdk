@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 4.0)
 project(EverSdk)
 
+include("${CMAKE_SOURCE_DIR}/cmake/ConfigurationSettings.cmake")
+
 include("${CMAKE_SOURCE_DIR}/cmake/external/Clipper2.cmake")
 include("${CMAKE_SOURCE_DIR}/cmake/external/EarCutHpp.cmake")
 include("${CMAKE_SOURCE_DIR}/cmake/external/Greatest.cmake")
