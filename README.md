@@ -1,17 +1,25 @@
 # EverSdk
 
-Here is a collection of libraries that I use for my game. Instead of copying them in to that project's directory, I made them compile separately. This way, CMake configuration times are significantly faster. Also, some libraries touch their source files at configuration time, which causes my code to relink to them after they are compiled again.
+Here is a collection of libraries that I use for my game. Instead of copying
+them in to that project's directory, I made them compile separately. This way,
+CMake configuration times are significantly faster. Also, some libraries touch
+their source files at configuration time, which causes my code to relink to them
+after they are compiled again.
 
 ## Usage
 
 1. Clone.
 2. Run `tools/download.bat`.
 3. Run `tools/build.bat`.
-4. Add directory to environment variables as `EVER_SDK_ROOT`. You can skip this and hardcode the path.
+4. Add directory to environment variables as `EVER_SDK_ROOT`. You can skip this
+   and hardcode the path.
 5. In your project, create the same presets as in SDK's `CMakePresets.json`.
-6. In your `CMakePresets.json`, configure `CMAKE_PREFIX_PATH` to `$env{EVER_SDK_ROOT}/install/${presetName}`.
-7. Add `find_package(EverSdk REQUIRED)` somewhere early in your `CMakeLists.txt`.
-8. Add `include("$env{EVER_SDK_ROOT}/cmake/ConfigurationSettings.cmake")` somewhere early in your `CMakeLists.txt`.
+6. In your `CMakePresets.json`, configure `CMAKE_PREFIX_PATH` to
+   `$env{EVER_SDK_ROOT}/install/${presetName}`.
+7. Add `find_package(EverSdk REQUIRED)` somewhere early in your
+   `CMakeLists.txt`.
+8. Add `include("$ENV{EVER_SDK_ROOT}/cmake/ConfigurationSettings.cmake")`
+   somewhere early in your `CMakeLists.txt`.
 9. Link your targets with the ones provided by the SDK.
 
 ## Libraries in the SDK
@@ -33,7 +41,8 @@ target_link_libraries(${TARGET_NAME} PRIVATE
 )
 ```
 
-> NOTE: Libraries that do not support installing with CMake are fixed with a wrapper library. Thus, they use `EverSdk::` namespace instead of their own.
+> NOTE: Libraries that do not support installing with CMake are fixed with a
+> wrapper library. Thus, they use `EverSdk::` namespace instead of their own.
 
 ## Example `CMakePresets.json`
 
@@ -98,9 +107,9 @@ target_link_libraries(${TARGET_NAME} PRIVATE
     },
     {
       "name": "analysis",
-      "inherits": ["profile"],
+      "inherits": ["checked"],
       "cacheVariables": {
-        "EM_ENABLE_ASSERTING": true
+        "EM_ENABLE_PROFILING": true
       }
     }
   ],
@@ -141,7 +150,9 @@ target_link_libraries(${TARGET_NAME} PRIVATE
 
 ## Bonus - Launching in VsCode
 
-Having this many presets might make you think you have to create separate launch settings for each. However, the currently selected configure preset gives the build directory to you.
+Having this many presets might make you think you have to create separate launch
+settings for each. However, the currently selected configure preset gives the
+build directory to you.
 
 For a target named `application`, you can do the following:
 
@@ -155,9 +166,13 @@ For a target named `application`, you can do the following:
     },
 ```
 
-> NOTE: Here we are assuming you have a task named `Build application`, which will create the executable that will be launched. Those automatically work for the currently selected preset, thus you do not have to do anything out of ordinary there.
+> NOTE: Here we are assuming you have a task named `Build application`, which
+> will create the executable that will be launched. Those automatically work for
+> the currently selected preset, thus you do not have to do anything out of
+> ordinary there.
 >
 > For completeness, here is the build task:
+>
 > ```JSON
 >  {
 >     "label": "Build application",
@@ -168,4 +183,4 @@ For a target named `application`, you can do the following:
 >       "kind": "build"
 >     }
 >   },
->   ```
+> ```
