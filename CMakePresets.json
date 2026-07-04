@@ -58,9 +58,9 @@
     },
     {
       "name": "analysis",
-      "inherits": ["profile"],
+      "inherits": ["checked"],
       "cacheVariables": {
-        "EM_ENABLE_ASSERTING": true
+        "EM_ENABLE_PROFILING": true
       }
     }
   ],
